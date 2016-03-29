@@ -94,7 +94,29 @@ public class QueueControl extends PriorityQueue{
 	}
 	
 	public String peek(){
-		System.out.println("The front element, F, value is " + queueArray[front]
+		System.out.println("The front element, F, value is " + queueArray[front]);
+		return "-1";
+	}
+	
+	void printQueue(){
+		display = new DisplayQueue();
+		display.show(queueArray, queueSize, front, rear);
+	}
+	
+	void performRemove(){
+		if(numberOfItems > 0){
+			System.out.println("REMOVE operation: " + queueArray[front] + "was removed from the Queue\n");
+			//set the removed element "invisible" in the queue;
+			queueArray[front] = "-1";
+			front++;
+			numberOfItems--;
+			System.out.println("The front element, F, is " + front);
+			System.out.println("The rear element, R, is " + rear);
+			System.out.println("The number of items is " + numberOfItems);
+		}
+		else{
+			System.out.println("Sorry but the Queue is empty");
+		}
 	}
 }
 	
