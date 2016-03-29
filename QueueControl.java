@@ -14,9 +14,14 @@ public class QueueControl extends PriorityQueue{
 	
 	public Queue Control(int size){
 		queueSize = size;
-		queueArray = new String
+		queueArray = new String[size];
+		//control what prints when queue is printed
+		Arrays.fill(queueArray, "-1");
 	}
 	
+	public static void main(String[] args) {
+		
+	}
 	
 	
 	/*
