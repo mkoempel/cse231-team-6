@@ -83,8 +83,18 @@ public class QueueControl extends PriorityQueue{
 		}
 		
 		else{
-			for (i = (numberOfItems - 1); i >= 0; i--)
+			for (i = (numberOfItems - 1); i >= 0; i--){
+				if(Integer.parseInt(input) > Integer.parseInt(queueArray[i])){
+					queueArray[i+1] = queueArray[i];
+				}
+				else break;
+			}
+			queueArray[i + 1] = input;
 		}
+	}
+	
+	public String peek(){
+		System.out.println("The front element, F, value is " + queueArray[front]
 	}
 }
 	
