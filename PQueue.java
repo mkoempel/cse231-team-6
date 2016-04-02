@@ -5,9 +5,9 @@ import java.util.*;
 
 public class PQueue extends PriorityQueue{
 	
-	private long stime;
-	private long etime;
-	private long differenceTime;
+	private long startTime;
+	private long endTime;
+	private long elapsedTime;
 	
 	private int[] array;
 	private int size;
@@ -23,7 +23,8 @@ public class PQueue extends PriorityQueue{
 	}
 	
 	public void buildQueue(){
-		int[] queueArray = new int[size];
+		startTimer();
+		queueArray = new int[size];
 		for (int temp : array){
 			performPriorityInsert(temp);
 		}
@@ -32,12 +33,8 @@ public class PQueue extends PriorityQueue{
 	}
 	
 	public void insert(int input){
-		System.out.println("insert");
 		if (queueSize + 1 <= size){
-			rear++;
 			queueArray[rear] = input;
-			
-			
 			queueSize++;
 		}
 		else{
@@ -52,15 +49,13 @@ public class PQueue extends PriorityQueue{
 			--front;
 		}
 		
-		
-		System.out.println("Pinsert");
 		if (queueSize == 0){
 			insert(input);
 		}
 		else{
 			rear++;
 			for (i = (queueSize - 1); i >= 0; i--){
-				if(input > queueArray[i]){
+				if(input < queueArray[i]){
 					queueArray[i + 1] = queueArray[i];
 				}
 				else break;
@@ -94,6 +89,7 @@ public class PQueue extends PriorityQueue{
 	}
 	
 	public int[] findValues(){
+		
 		int temp;
 		int hits = 0;
 		int valuesSize = 2;
@@ -108,13 +104,14 @@ public class PQueue extends PriorityQueue{
 				break;
 			}
 		}
+		endTimer();
 		return values;
 	}
 			
 	
 	public void printQueue(){
 		System.out.println("The values of the first array are:");
-		for (int i = 0; i < queueSize; i++){
+		for (int i = front; i < queueSize + front; i++){
 			System.out.print(" | " + queueArray[i]);
 			if ((i + 1) % 10 == 0){
 				System.out.print("\n\n");
@@ -122,6 +119,20 @@ public class PQueue extends PriorityQueue{
 		}
 		
 	}
+	
+	public void startTimer(){
+		startTime = System.currentTimeMillis();
+	}
+	
+	public void endTimer(){
+		endTime = System.currentTimeMillis();
+		elapsedTime = endTime - startTime;
+	}
+	
+	public long getElapsedTime(){
+		return elapsedTime;
+	}
+	
 	
 }
 

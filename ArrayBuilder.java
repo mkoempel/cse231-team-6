@@ -8,6 +8,7 @@ public class ArrayBuilder{
 	private int arraySize1 = 20;
 	private int arraySize2 = 2000;
 	private int arraySize3 = 20000;
+	int[] values;
 	
 	public static void main(String[] args){
 		ArrayBuilder ab = new ArrayBuilder();
@@ -37,11 +38,28 @@ public class ArrayBuilder{
 	}
 	
 	public void controlPQueue(){
-		PQueue pq = new PQueue(array1);
-		pq.buildQueue();
-		int[] values = pq.findValues();
+		PQueue pq1 = new PQueue(array1);
+		pq1.buildQueue();
+		pq1.printQueue();
+		values = pq1.findValues();
 		System.out.println(values[0]);
 		System.out.println(values[1]);
+		System.out.println("elapsed time: " + pq1.getElapsedTime());
+		
+		PQueue pq2 = new PQueue(array2);
+		pq2.buildQueue();
+		values = pq2.findValues();
+		System.out.println(values[0]);
+		System.out.println(values[1]);
+		System.out.println("elapsed time: " + pq2.getElapsedTime());
+		
+		PQueue pq3 = new PQueue(array3);
+		pq3.buildQueue();
+		values = pq3.findValues();
+		System.out.println(values[0]);
+		System.out.println(values[1]);
+		System.out.println("elapsed time: " + pq3.getElapsedTime());
+		
 	}
 		
 }
