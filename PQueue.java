@@ -86,7 +86,7 @@ public class PQueue{
 		return temp;
 	}
 	
-	public int[] linearSearch(int lowBound, int highBound){
+	public int[] getResults(int lowBound, int highBound){
 		
 		int temp;
 		int hits = 0;
@@ -127,7 +127,7 @@ public class PQueue{
 		elapsedTime = endTime - startTime;
 	}
 	
-	public long getElapsedTime(){
+	public long getTime(){
 		return elapsedTime;
 	}
 	
