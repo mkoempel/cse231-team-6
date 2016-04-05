@@ -1,9 +1,9 @@
-package edu.oakland.helper;
+package edu.oakland.team6;
 
 import java.util.*;
 
 
-public class PQueue extends PriorityQueue{
+public class PQueue{
 	
 	private long startTime;
 	private long endTime;
@@ -17,17 +17,15 @@ public class PQueue extends PriorityQueue{
 	
 	
 	public PQueue(int[] someArray){
+		startTimer();
 		array = someArray;
 		size = array.length;
 		
-	}
-	
-	public void buildQueue(){
-		startTimer();
 		queueArray = new int[size];
 		for (int temp : array){
 			performPriorityInsert(temp);
 		}
+		
 		
 		
 	}
@@ -88,7 +86,7 @@ public class PQueue extends PriorityQueue{
 		return temp;
 	}
 	
-	public int[] findValues(){
+	public int[] linearSearch(int lowBound, int highBound){
 		
 		int temp;
 		int hits = 0;
@@ -96,7 +94,7 @@ public class PQueue extends PriorityQueue{
 		int[] values = new int[valuesSize];
 		for (int i = 0; i < queueSize; i++){
 			temp = pull();
-			if (temp >= 800 && temp <= 8000 && temp % 2 == 0){
+			if (temp >= lowBound && temp <= highBound && temp % 2 == 0){
 				values[hits] = temp;
 				hits++;
 			}
