@@ -92,7 +92,7 @@ public class PQueue{
 		int hits = 0;
 		int valuesSize = 2;
 		int[] values = new int[valuesSize];
-		for (int i = 0; i < queueSize; i++){
+		for (int i = 0; i < size; i++){
 			temp = pull();
 			if (temp >= lowBound && temp <= highBound && temp % 2 == 0){
 				values[hits] = temp;
