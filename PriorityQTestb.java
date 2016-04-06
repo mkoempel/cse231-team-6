@@ -2,7 +2,7 @@ package edu.oakland.test;
 import edu.oakland.helper.PQueue;
 import junit.framework.*;	
 
-public class PriorityQTest extends TestCase {
+public class PriorityQTestb extends TestCase {
 	private int testResult;
 	private int testResult2;
 	private int evenPass = 802;
