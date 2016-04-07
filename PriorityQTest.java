@@ -3,6 +3,11 @@ package edu.oakland.test;
 import edu.oakland.helper.*;
 import junit.framework.*;	
 
+/**
+*@author CSE231 Team 6
+*@version Version 1.0 160407
+*@Since Version 1.0 160407
+*/
 public class PriorityQTest extends TestCase {
 	private int testResult;
 	private int testResult2;
