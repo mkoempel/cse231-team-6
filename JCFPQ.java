@@ -1,9 +1,8 @@
-package edu.oakland.team6;
+package edu.oakland.helper;
 
 import java.util.*;
 
 public class JCFPQ {
-	//None of these need to be static in final code
 	private long startTime, endTime, elapsedTime;
 	private PriorityQueue<Integer> pq;
 	private int[] results = {-1,-1};
@@ -24,7 +23,7 @@ public class JCFPQ {
 		endTime = System.currentTimeMillis();
 	}
 	
-	public long getElapsedTime() {
+	public long getTime() {
 		elapsedTime = endTime - startTime;
 		return elapsedTime;
 	}
@@ -36,14 +35,14 @@ public class JCFPQ {
 		}
 	}
 	
-	public int[] linearSearch(int lowBound, int highBound) {
+	public int[] getResults(int lowBound, int highBound) {
 		int[] internalResults = {-1, -1};
 		boolean firstInRange = false, secondInRange = false;
 		Integer currentInteger, secondInteger;
+		Iterator<Integer> pqIterator = new Iterator<Integer>(pq);
 		
-		PriorityQueue<Integer> temp = new PriorityQueue<Integer>(pq);
-		while (temp.peek() != null && firstInRange == false) {
-			currentInteger = temp.poll();
+		while (pqIterator.hasNext() && firstInRange == false) {
+			currentInteger = pqIterator.next();
 			if (currentInteger < lowBound) {
 				firstInRange = false;
 			}
@@ -52,11 +51,13 @@ public class JCFPQ {
 					firstInRange = true;
 					internalResults[0] = currentInteger;
 					//Once the first integer is found start checking for the second one
-					while (temp.peek() != null && temp.peek() < highBound && secondInRange == false) {
-						secondInteger = temp.poll();
-						if (secondInteger % 2 == 0) {
-							internalResults[1] = secondInteger;
-							secondInRange = true;
+					while (pqIterator.hasNext() && secondInRange == false) {
+						secondInteger = pqIterator.next();
+						if (secondInteger < highBound) {
+							if (secondInteger % 2 == 0) {
+								internalResults[1] = secondInteger;
+								secondInRange = true;
+							}
 						}
 					}
 				}
@@ -68,5 +69,27 @@ public class JCFPQ {
 		}
 		endTimer();
 		return internalResults;
+	}
+	
+	//Private inner class that creates an iterator over the priority queue
+	private class Iterator<Integer> {
+		private PriorityQueue<Integer> temp;
+		
+		public Iterator(PriorityQueue<Integer> pQueue) {
+			temp = new PriorityQueue<Integer>(pQueue);	
+		}
+		
+		public boolean hasNext() {
+			return (temp.peek() != null);
+		}
+		
+		public Integer next() {
+			Integer tempInteger = temp.poll();
+			return tempInteger;
+		}
+		
+		public void remove() {
+			temp.poll();
+		}
 	}
 }
