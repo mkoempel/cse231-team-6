@@ -2,11 +2,28 @@ package edu.oakland.helper;
 
 import java.util.*;
 
+/**
+ * @author Team 6
+ * @version 1.0.0 160409
+ * @since 1.0.0
+ */
 public class JCFPQ {
+	
+	/**
+	*startTime, endTime, elapsedTime are used to record time during run.
+	* startTime is recorded once a JCFPQ class is created.
+	* endTime is recorded once the getResults class ends.
+	* elapsedTime is calculated from startTime and endTime.
+	* results holds the first two even values within the specified range.
+	*/
 	private long startTime, endTime, elapsedTime;
 	private PriorityQueue<Integer> pq;
 	private int[] results = {-1,-1};
 		
+	/**
+	 * Constructor that takes an int array and copies each value into
+	 * a priority queue integer array called pq.
+	 */
 	public JCFPQ (int[] theArray) {
 		startTimer();
 		pq = new PriorityQueue<Integer>();
@@ -15,19 +32,30 @@ public class JCFPQ {
 		}
 	}
 	
+	/**
+	 * startTimer stores the time value for when a JCFPQ is made.
+	 */
 	public void startTimer() {
 		startTime = System.currentTimeMillis();
 	}
-	
+	/**
+	 * endTimer stores the time value for when the first two even values are found within
+	 * the getResults method.
+	 */
 	public void endTimer() {
 		endTime = System.currentTimeMillis();
 	}
-	
+	/**
+	 * getTime returns the time difference for when the class JCFPQ was created and when
+	 * the getResults method ends.
+	 */
 	public long getTime() {
 		elapsedTime = endTime - startTime;
 		return elapsedTime;
 	}
-	
+	/**
+	 * printPQ prints out all numbers within the priority queue.
+	 */
 	public void printPQ() {
 		PriorityQueue<Integer> temp = new PriorityQueue<Integer>(pq);
 		while (temp.peek() != null) {
@@ -35,6 +63,11 @@ public class JCFPQ {
 		}
 	}
 	
+	/**
+	*@return int[] with the int array containing the first two even numbers within the bounds.
+	* The getResults method takes the "PriorityQueue<Integer> pq" and finds the first two even
+	* numbers within pq and returns them in an int array.
+	*/
 	public int[] getResults(int lowBound, int highBound) {
 		int[] internalResults = {-1, -1};
 		boolean firstInRange = false, secondInRange = false;
