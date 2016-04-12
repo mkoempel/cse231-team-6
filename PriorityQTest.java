@@ -54,7 +54,7 @@ public class PriorityQTest extends TestCase {
 		System.out.println("The first element between 800 and 8000 is " + resultArray[0]);
 		System.out.println("The second element between 800 and 8000 is " + resultArray[1]);
 		timeElapsed = pQueue.getTime();
-		System.out.println("The time elapsed was: "+timeElapsed+" nanoseconds");
+		System.out.println("The time elapsed was: "+timeElapsed+" milliseconds");
 	}
 	
 	/**
