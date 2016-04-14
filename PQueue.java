@@ -1,4 +1,4 @@
-package edu.oakland.helper;
+package edu.oakland.project.helper;
 
 import java.util.*;
 
@@ -8,15 +8,18 @@ import java.util.*;
  * @since 1.0.0
  */
 
+/**
+*Priority Queue Class containing an underlying data structure
+*/
 public class PQueue{
 	
 	/**
-	* long time of class construction in milliseconds
+	* long time of class construction in microseconds
 	*/
 	private long startTime;
 	
 	/**
-	* long time completion of the linear search in milliseconds
+	* long time completion of the linear search in microseconds
 	*/
 	private long endTime;
 	
@@ -44,7 +47,6 @@ public class PQueue{
 	* @param someArray The array being passed to constructor
 	*/
 	public PQueue(int[] someArray){
-		startTimer();
 		array = someArray;
 		
 		queueArray = new int[array.length];
@@ -75,6 +77,7 @@ public class PQueue{
 	* @param input The integer value to be inserted by ascending value
 	*/
 	public void performPriorityInsert(int input){
+		startTimer();
 		int i = 0;
 		if(front > 0){
 			--front;
@@ -142,14 +145,15 @@ public class PQueue{
 		int hits = 0;
 		int valuesSize = 2;
 		int[] values = new int[valuesSize];
-		for (int i = 0; i < array.length; i++){
+		while (front < queueArray.length){
 			temp = pull();
 			if (temp >= lowBound && temp <= highBound && temp % 2 == 0){
 				values[hits] = temp;
 				hits++;
 			}
 			if(hits >= 2){
-				break;
+				endTimer();
+				return values;
 			}
 		}
 		endTimer();
@@ -182,7 +186,7 @@ public class PQueue{
 	*/
 	public void endTimer(){
 		endTime = System.nanoTime();
-		elapsedTime = (endTime - startTime)/1000000;
+		elapsedTime = (endTime - startTime)/1000;
 	}
 	
 	/**
